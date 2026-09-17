@@ -1,0 +1,189 @@
+INSERT INTO members
+    (id, surname, given_name, smallgroup, campus, birthday, barangay)
+VALUES
+    (1,  'Santos',     'Juan',       NULL, NULL, '2002-03-15', 'Anabu'),
+    (2,  'Reyes',      'Maria',      NULL, NULL, '2001-07-22', 'Buhay na Tubig'),
+    (3,  'Cruz',       'Daniel',     NULL, NULL, '2003-11-08', 'Palico'),
+    (4,  'Garcia',     'Angela',     NULL, NULL, '2000-05-19', 'Tanzang Luma'),
+    (5,  'Dela Cruz',  'Joshua',     NULL, NULL, '2002-09-30', 'Malagasang'),
+    (6,  'Mendoza',    'Sarah',      NULL, NULL, '2004-01-12', 'Medicion'),
+    (7,  'Torres',     'Michael',    NULL, NULL, '1999-12-03', 'Alapan'),
+    (8,  'Navarro',    'Christine', NULL, NULL, '2001-06-25', 'Bacoor'),
+    (9,  'Villanueva', 'Mark',       NULL, NULL, '2003-02-17', 'Imus'),
+    (10, 'Aquino',     'Rachel',     NULL, NULL, '2000-10-11', 'Pasong Camachile'),
+    (11, 'Bautista',   'Kevin',      NULL, NULL, '2004-04-09', 'Malagasang'),
+    (12, 'Ramos',      'Hannah',     NULL, NULL, '2002-08-14', 'Anabu'),
+    (13, 'Castillo',   'Nathan',     NULL, NULL, '2001-01-28', 'Buhay na Tubig'),
+    (14, 'Flores',     'Sofia',      NULL, NULL, '2003-06-05', 'Palico'),
+    (15, 'Morales',    'Ethan',      NULL, NULL, '1998-09-21', 'Tanzang Luma'),
+    (16, 'Fernandez',  'Grace',      NULL, NULL, '2004-02-13', 'Medicion'),
+    (17, 'Mendoza',    'Andrew',     NULL, NULL, '2000-11-30', 'Alapan'),
+    (18, 'Rivera',     'Nicole',     NULL, NULL, '2002-05-17', 'Bacoor'),
+    (19, 'Gonzales',   'Samuel',     NULL, NULL, '2003-10-02', 'Imus'),
+    (20, 'Diaz',       'Patricia',   NULL, NULL, '2001-12-19', 'Pasong Camachile'),
+    (21, 'Domingo',    'Ryan',       NULL, NULL, '1999-04-25', 'Malagasang'),
+    (22, 'Manalo',     'Rebecca',    NULL, NULL, '2004-07-07', 'Anabu'),
+    (23, 'Lim',        'Jonathan',   NULL, NULL, '2002-02-11', 'Buhay na Tubig'),
+    (24, 'Tan',        'Michelle',   NULL, NULL, '2000-08-29', 'Palico'),
+    (25, 'Chua',       'Christian',  NULL, NULL, '2003-03-03', 'Tanzang Luma'),
+    (26, 'Ocampo',     'Elaine',     NULL, NULL, '2001-05-26', 'Medicion'),
+    (27, 'Pascual',    'Anthony',    NULL, NULL, '1998-12-12', 'Alapan'),
+    (28, 'Santiago',   'Jasmine',    NULL, NULL, '2004-09-18', 'Bacoor'),
+    (29, 'Mercado',    'David',      NULL, NULL, '2002-06-21', 'Imus'),
+    (30, 'Salazar',    'Stephanie',  NULL, NULL, '2000-01-06', 'Pasong Camachile');
+
+INSERT INTO ministries
+    (id, leader, ministry_name, schedule)
+VALUES
+    (1, NULL, 'Worship Ministry',       'Sunday 8:00 AM'),
+    (2, NULL, 'Youth Ministry',         'Saturday 4:00 PM'),
+    (3, NULL, 'Children Ministry',      'Sunday 10:00 AM'),
+    (4, NULL, 'Outreach Ministry',      'Saturday 9:00 AM'),
+    (5, NULL, 'Discipleship Ministry',  'Wednesday 7:00 PM');
+
+UPDATE ministries
+SET leader = CASE id
+    WHEN 1 THEN 2
+    WHEN 2 THEN 5
+    WHEN 3 THEN 6
+    WHEN 4 THEN 8
+    WHEN 5 THEN 10
+END
+WHERE id BETWEEN 1 AND 5;
+
+INSERT INTO smallgroups
+    (id, leader, meeting_day, meeting_time, meeting_place, lifstage)
+VALUES
+    (1,  NULL, 'Monday',    '19:00:00', 'Imus Church Hall',              1),
+    (2,  NULL, 'Tuesday',   '19:00:00', 'Bayan Luma Community Center',   2),
+    (3,  NULL, 'Wednesday', '18:30:00', 'Malagasang House Fellowship',   3),
+    (4,  NULL, 'Thursday',  '19:00:00', 'Anabu Community Center',        4),
+    (5,  NULL, 'Friday',    '19:30:00', 'Palico Fellowship Hall',         5),
+    (6,  NULL, 'Saturday',  '16:00:00', 'Bacoor Community Center',       2),
+    (7,  NULL, 'Monday',    '18:30:00', 'Tanzang Luma Fellowship',        5),
+    (8,  NULL, 'Tuesday',   '18:30:00', 'Medicion House Fellowship',      1),
+    (9,  NULL, 'Wednesday', '19:00:00', 'Alapan Community Center',        4),
+    (10, NULL, 'Thursday',  '18:30:00', 'Imus Youth Center',               3);
+
+UPDATE smallgroups
+SET leader = CASE id
+    WHEN 1 THEN 1
+    WHEN 2 THEN 3
+    WHEN 3 THEN 4
+    WHEN 4 THEN 7
+    WHEN 5 THEN 9
+    WHEN 6 THEN 11
+    WHEN 7 THEN 13
+    WHEN 8 THEN 15
+    WHEN 9 THEN 17
+    WHEN 10 THEN 19
+END
+WHERE id BETWEEN 1 AND 10;
+
+INSERT INTO campuses
+    (id, name, address, overseer)
+VALUES
+    (1, 'Imus Campus',           'Imus, Cavite',           NULL),
+    (2, 'Bacoor Campus',         'Bacoor, Cavite',         NULL),
+    (3, 'Dasmarinas Campus',     'Dasmarinas, Cavite',     NULL),
+    (4, 'General Trias Campus',  'General Trias, Cavite',  NULL),
+    (5, 'Silang Campus',         'Silang, Cavite',          NULL);
+
+UPDATE campuses
+SET overseer = CASE id
+    WHEN 1 THEN 1
+    WHEN 2 THEN 3
+    WHEN 3 THEN 5
+    WHEN 4 THEN 7
+    WHEN 5 THEN 9
+END
+WHERE id BETWEEN 1 AND 5;
+
+INSERT INTO events
+    (id, event_type, name, date, speaker, ministry)
+VALUES
+    (1,  'Worship Service', 'Sunday Celebration',          '2026-09-20', 1,  1),
+    (2,  'Youth Event',     'Youth Fellowship Night',     '2026-09-26', 3,  2),
+    (3,  'Children Event',  'Kids Bible Day',             '2026-09-27', 4,  3),
+    (4,  'Outreach',        'Community Outreach',          '2026-10-03', 7,  4),
+    (5,  'Discipleship',    'Bible Study Conference',     '2026-10-10', 9,  5),
+
+    (6,  'Worship Service', 'Praise and Worship Night',   '2026-10-11', 2,  1),
+    (7,  'Youth Event',     'Youth Leadership Training',  '2026-10-17', 5,  2),
+    (8,  'Children Event',  'Kids Fun Day',               '2026-10-18', 6,  3),
+    (9,  'Outreach',        'Feeding Program',             '2026-10-24', 8,  4),
+    (10, 'Discipleship',    'Foundations of Faith',       '2026-10-28', 10, 5),
+
+    (11, 'Worship Service', 'Thanksgiving Service',       '2026-11-01', 12, 1),
+    (12, 'Youth Event',     'Youth Worship Night',        '2026-11-07', 13, 2),
+    (13, 'Children Event',  'Children Ministry Training', '2026-11-08', 14, 3),
+    (14, 'Outreach',        'Barangay Service Project',   '2026-11-14', 17, 4),
+    (15, 'Discipleship',    'Discipleship Workshop',      '2026-11-18', 19, 5);
+
+UPDATE members
+SET smallgroup = CASE id
+    WHEN 1  THEN 1
+    WHEN 2  THEN 1
+    WHEN 3  THEN 2
+    WHEN 4  THEN 2
+    WHEN 5  THEN 3
+    WHEN 6  THEN 3
+    WHEN 7  THEN 4
+    WHEN 8  THEN 4
+    WHEN 9  THEN 5
+    WHEN 10 THEN 5
+    WHEN 11 THEN 6
+    WHEN 12 THEN 6
+    WHEN 13 THEN 7
+    WHEN 14 THEN 7
+    WHEN 15 THEN 8
+    WHEN 16 THEN 8
+    WHEN 17 THEN 9
+    WHEN 18 THEN 9
+    WHEN 19 THEN 10
+    WHEN 20 THEN 10
+    WHEN 21 THEN 1
+    WHEN 22 THEN 2
+    WHEN 23 THEN 3
+    WHEN 24 THEN 4
+    WHEN 25 THEN 5
+    WHEN 26 THEN 6
+    WHEN 27 THEN 7
+    WHEN 28 THEN 8
+    WHEN 29 THEN 9
+    WHEN 30 THEN 10
+END,
+
+campus = CASE id
+    WHEN 1  THEN 1
+    WHEN 2  THEN 1
+    WHEN 3  THEN 1
+    WHEN 4  THEN 2
+    WHEN 5  THEN 2
+    WHEN 6  THEN 2
+    WHEN 7  THEN 3
+    WHEN 8  THEN 3
+    WHEN 9  THEN 3
+    WHEN 10 THEN 3
+    WHEN 11 THEN 4
+    WHEN 12 THEN 4
+    WHEN 13 THEN 4
+    WHEN 14 THEN 4
+    WHEN 15 THEN 4
+    WHEN 16 THEN 5
+    WHEN 17 THEN 5
+    WHEN 18 THEN 5
+    WHEN 19 THEN 5
+    WHEN 20 THEN 5
+    WHEN 21 THEN 1
+    WHEN 22 THEN 1
+    WHEN 23 THEN 2
+    WHEN 24 THEN 2
+    WHEN 25 THEN 3
+    WHEN 26 THEN 3
+    WHEN 27 THEN 4
+    WHEN 28 THEN 4
+    WHEN 29 THEN 5
+    WHEN 30 THEN 5
+END
+WHERE id BETWEEN 1 AND 30;
