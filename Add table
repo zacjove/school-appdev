@@ -1,0 +1,57 @@
+CREATE TABLE "members" (
+  "id" integer PRIMARY KEY,
+  "surname" varchar,
+  "given_name" varchar,
+  "smallgroup" integer,
+  "campus" integer,
+  "birthday" date,
+  "baranggay" varchar
+);
+
+CREATE TABLE "smallgroups" (
+  "id" integer PRIMARY KEY,
+  "leader" integer,
+  "meeting_day" varchar,
+  "meeting_time" time,
+  "meeting_place" varchar,
+  "lifestage" integer
+);
+
+CREATE TABLE "campuses" (
+  "id" integer PRIMARY KEY,
+  "name" varchar,
+  "address" varchar,
+  "overseer" integer
+);
+
+CREATE TABLE "events" (
+  "id" integer PRIMARY KEY,
+  "event_type" varchar,
+  "name" varchar,
+  "date" date,
+  "speaker" integer,
+  "ministry" integer
+);
+
+CREATE TABLE "ministries" (
+  "id" integer PRIMARY KEY,
+  "leader" integer,
+  "ministry_name" varchar,
+  "schedule" varchar
+);
+
+ALTER TABLE "members" ADD FOREIGN KEY ("smallgroup") REFERENCES "smallgroups" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "members" ADD FOREIGN KEY ("campus") REFERENCES "campuses" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "smallgroups" ADD FOREIGN KEY ("leader") REFERENCES "members" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "smallgroups" ADD FOREIGN KEY ("lifestage") REFERENCES "ministries" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "campuses" ADD FOREIGN KEY ("overseer") REFERENCES "members" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "events" ADD FOREIGN KEY ("speaker") REFERENCES "members" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "events" ADD FOREIGN KEY ("ministry") REFERENCES "ministries" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+
+ALTER TABLE "ministries" ADD FOREIGN KEY ("leader") REFERENCES "members" ("id") DEFERRABLE INITIALLY IMMEDIATE;
